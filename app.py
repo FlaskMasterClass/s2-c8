@@ -87,6 +87,12 @@ if __name__ == "__main__":
 
     @app.route("/", methods=["GET", "POST"])
     def home():
+        # for demo purposes
+        try:
+            db.create_all()
+        except:
+            pass 
+        
         form = UserForm()
         users = User.query.all()
         if request.method == "POST":
