@@ -77,14 +77,6 @@ def create_app(profile):
             "db": db,
         }
 
-    return app
-
-
-flask_env = os.environ.get("FLASK_ENV", default="development")
-app = create_app(flask_env)
-
-if __name__ == "__main__":
-
     @app.route("/", methods=["GET", "POST"])
     def home():
         # for demo purposes
@@ -121,5 +113,15 @@ if __name__ == "__main__":
                 flash_errors(form)
                 return redirect(url_for("home"))
         return render_template("edit.html", form=form, user=user)
+
+    return app
+
+
+flask_env = os.environ.get("FLASK_ENV", default="development")
+app = create_app(flask_env)
+
+if __name__ == "__main__":
+
+
 
     app.run(host="0.0.0.0", port=5011, debug=True, ssl_context='adhoc')
