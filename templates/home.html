@@ -20,6 +20,8 @@
         {% if field.id not in ['csrf_token'] %}
         {{ field.label }}<br>
         {{ field }}
+        {% else %}
+            {{field()}}
         {% endif %}
     {% endfor %}
     <input type="submit" value="submit">
