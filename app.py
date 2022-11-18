@@ -93,10 +93,10 @@ def create_app(profile):
                 u = User(name=form.data["name"])
                 db.session.add(u)
                 db.session.commit()
-                return redirect(url_for("home"))
+                return redirect(url_for("home", _external=True, _scheme='https'))
             else:
                 flash_errors(form)
-                return redirect(url_for("home"))
+                return redirect(url_for("home", _external=True, _scheme='https'))
         return render_template("home.html", form=form, users=users)
 
     @app.route("/edit/<int:user_id>", methods=["GET", "POST"])
@@ -108,10 +108,10 @@ def create_app(profile):
             if form.validate_on_submit():
                 form.populate_obj(user)
                 db.session.commit()
-                return redirect(url_for("home"))
+                return redirect(url_for("home", _external=True, _scheme='https'))
             else:
                 flash_errors(form)
-                return redirect(url_for("home"))
+                return redirect(url_for("home", _external=True, _scheme='https'))
         return render_template("edit.html", form=form, user=user)
 
     return app
